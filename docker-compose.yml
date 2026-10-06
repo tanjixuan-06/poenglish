@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        # 站点地址会被编译进产物（sitemap / canonical / JSON-LD），
+        # 所以必须作为构建参数传入；改域名后需要重新 build。
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://your-domain.com}
+    image: poenglish:latest
+    container_name: poenglish
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      # 只监听本机，由 Nginx 对外反向代理（不直接暴露 3000 到公网）
+      - "127.0.0.1:3000:3000"
