@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 标题与诗句走衬线，界面文字走无衬线——混排是刻意的 */
+  h1,
+  h2,
+  h3,
+  blockquote {
+    @apply font-serif;
+  }
+
+  ::selection {
+    @apply bg-brand/15;
+  }
+
+  /* 中文正文的行距必须比英文松，否则读起来发挤。
+     1.9 是宋体在 15–16px 下比较舒服的一档。 */
+  body {
+    @apply bg-paper text-ink antialiased;
+    line-height: 1.9;
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------------
+     纸墨设计系统
+     全站只允许用这里定义的按钮与容器，不在页面里散写圆角与配色。
+     圆角一律 2px（rounded-sm 观感）——纸墨气质要方正，不要 SaaS 感的大圆角。
+     ------------------------------------------------------------------ */
+
+  /* 主按钮：青花墨蓝实底 */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-sm
+           bg-brand px-4 py-2 text-sm font-medium text-white
+           transition-colors duration-150 hover:bg-brand-dark
+           disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  /* 次按钮：描边，安静 */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-sm
+           border border-line bg-transparent px-4 py-2 text-sm text-inkSoft
+           transition-colors duration-150 hover:border-brand/50 hover:text-brand
+           disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  /* 文字按钮：用于「看答案」「返回」这类轻动作 */
+  .btn-quiet {
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1 py-0.5
+           text-xs text-inkFaint underline decoration-line underline-offset-4
+           transition-colors duration-150 hover:text-brand;
+  }
+
+  /* 卡片：白纸一张 */
+  .card {
+    @apply rounded-sm border border-line bg-white;
+  }
+
+  /* 内嵌面板：纸底压深一档，用于卡片内部的次级区块 */
+  .panel {
+    @apply rounded-sm bg-paperDim/60 px-4 py-3.5;
+  }
+
+  /* 小标签：描边式，不用实底（实底在纸墨上太吵） */
+  .tag {
+    @apply inline-flex items-center rounded-sm border border-line px-2 py-[3px]
+           text-[11px] leading-none text-inkSoft;
+  }
+
+  /* 页眉标题：居中 + 下方细线，全站页头统一走这个 */
+  .h-page {
+    @apply text-center font-serif text-[26px] leading-snug tracking-wide text-ink sm:text-[30px];
+  }
+
+  /* 区块小标题：左侧一道朱砂细线 */
+  .h-sec {
+    @apply border-l-2 border-cinnabar pl-2.5 font-serif text-[15px] leading-relaxed text-ink;
+  }
+
+  /* 诗句：中文正文级排版 */
+  .poem-zh {
+    @apply font-serif text-[17px] leading-[2] tracking-wide text-ink sm:text-[18px];
+  }
+
+  /* 英译：与中文同一节奏，字略小一号 */
+  .poem-en {
+    @apply font-serif text-[15px] leading-[1.95] text-inkSoft sm:text-[16px];
+  }
+
+  /* 说明性小字：中文行距同样要松 */
+  .note {
+    @apply text-[13px] leading-[1.9] text-inkSoft;
+  }
+
+  /* 极淡的辅助信息 */
+  .hint {
+    @apply text-xs leading-[1.8] text-inkFaint;
+  }
+
+  /* 分区标题上方的间距 */
+  .sec {
+    @apply space-y-3.5;
+  }
+}
