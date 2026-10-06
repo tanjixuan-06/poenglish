@@ -13,9 +13,14 @@ const nextConfig = {
     // 否则客户端脚本被浏览器拒绝执行，整站会停在 SSR 静态壳（按钮 disabled、游戏停在“出题中…”），
     // 交互全部失效。生产构建不依赖 eval，故保持严格策略。
     const isProd = process.env.NODE_ENV === "production";
+    // 可选的统计/分析域名（如 https://umami.example）：留空则不额外放行；
+    // 设置了才把它加进 script-src 与 connect-src——否则统计脚本与其上报
+    // 都会被 CSP 拦掉，表现为“统计后台一直没数据”。
+    const analyticsHost = (process.env.ANALYTICS_HOST || "").trim();
+    const extra = analyticsHost ? ` ${analyticsHost}` : "";
     const csp = isProd
-      ? "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
-      : "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
+      ? `default-src 'self'; script-src 'self' 'unsafe-inline'${extra}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'${extra}; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'`
+      : `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'${extra}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'${extra}; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'`;
     return [
       {
         source: "/(.*)",

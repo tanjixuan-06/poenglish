@@ -124,7 +124,26 @@ A：**不要**。容器只监听 `127.0.0.1:3000`，对外只走 Nginx 的 80/44
 
 ---
 
-## 8. 安全提醒
+## 8. 看流量
+
+- **最快**：Vercel 控制台 → 项目 → **Analytics** 标签 → 开启。
+  可看访问量、访客数、热门页面（免费版数据保留有限）。
+- **内置方案（推荐）**：本站已预留 Umami（`app/components/Umami.tsx`，已挂载在 layout）。
+  设置三个环境变量即可生效：
+
+  | 变量 | 值示例 |
+  |---|---|
+  | `NEXT_PUBLIC_UMAMI_SRC` | `https://umami.example/script.js` |
+  | `NEXT_PUBLIC_UMAMI_ID` | Umami 后台给的 website-id |
+  | `ANALYTICS_HOST` | `https://umami.example`（CSP 放行用） |
+
+  ⚠️ 不填 `ANALYTICS_HOST` 的话，CSP 会拦掉脚本与上报，表现为"后台一直没数据"。
+  改完需重新部署（`NEXT_PUBLIC_*` 是编译期变量）。
+
+> **注意**：国内版上线前，Vercel 上的访问数据几乎为 0——大陆无法直连 Vercel。
+> 等国内服务器部署完成、域名解析过去后，流量数据才有参考价值。
+
+## 9. 安全提醒
 
 - `.env` 已在 `.gitignore` 中，密钥不会进仓库
 - 用户自带的 BYOK 密钥只存其浏览器，服务端不保存、不记录
