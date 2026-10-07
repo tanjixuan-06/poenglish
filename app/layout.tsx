@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     title: "诗英 · 用古诗词学英语",
     description: "读古诗，学英语——猜诗闯关、每日一诗、跨学科知识卡。",
     type: "website",
+    // 原先用 app/opengraph-image.png 文件约定提供，现改为静态资源引用
+    //（next-on-pages 不支持文件约定的 metadata 图片路由）。
+    images: ["/opengraph-image.png"],
   },
   manifest: "/manifest.webmanifest",
   appleWebApp: {

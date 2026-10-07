@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const runtime = "edge";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "诗英 · 用古诗词学英语",

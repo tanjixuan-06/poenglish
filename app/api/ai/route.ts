@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+// Cloudflare Pages（next-on-pages）要求服务端路由显式声明 Edge 运行时；
+// 本路由仅使用 Web 标准 API（fetch/URL/ReadableStream），Edge 完全兼容。
+export const runtime = "edge";
 import { PROMPTS } from "../../config/prompts";
 import { POEMS } from "../../config/poems";
 import { contentWords } from "../../lib/translatescore";

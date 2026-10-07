@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { POEMS } from "./config/poems";
 import { IMAGERY } from "./lib/imagery";
 
+export const runtime = "edge";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
   const now = new Date();
