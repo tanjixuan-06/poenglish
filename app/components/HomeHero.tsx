@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "./LangProvider";
+import { loadAiSettings } from "../lib/aisettings";
 
 const SECTIONS = [
   { href: "/imagery", key: "navImagery", descKey: "secImageryDesc" },
@@ -20,6 +22,13 @@ const NOS = ["一", "二", "三", "四", "五", "六", "七", "八", "九"];
 
 export default function HomeHero() {
   const { t } = useLang();
+  // 仅在访客还没填过自带密钥时显示提示；初始为 null 不渲染，避免 SSR 水合不一致
+  const [hasByok, setHasByok] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const s = loadAiSettings();
+    setHasByok(!!(s.enabled && s.apiKey));
+  }, []);
 
   return (
     <div className="space-y-20 pb-6 sm:space-y-24">
@@ -52,13 +61,15 @@ export default function HomeHero() {
           </Link>
         </div>
 
-        {/* 安静的提示：AI 功能依赖自带密钥，不喧宾夺主 */}
-        <p className="mt-7 text-center">
-          <span className="hint">{t("homeByokHint")}</span>{" "}
-          <Link href="/me" className="btn-quiet">
-            {t("navMe")}
-          </Link>
-        </p>
+        {/* 安静的提示：仅访客尚未填过自带密钥时显示，老用户不再看到 */}
+        {hasByok === false && (
+          <p className="mt-7 text-center">
+            <span className="hint">{t("homeByokHint")}</span>{" "}
+            <Link href="/me" className="btn-quiet">
+              {t("navMe")}
+            </Link>
+          </p>
+        )}
       </section>
 
       {/* 几处去处：像书桌上的几页纸，安静地列着 */}
