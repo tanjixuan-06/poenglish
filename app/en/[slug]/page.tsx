@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import EnPoemView from "../../components/EnPoemView";
 import { POEMS, POEM_MAP } from "../../config/poems";
 
-export const runtime = "edge";
-
 export const dynamicParams = false;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";

@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import ImageryRoam from "../../components/ImageryRoam";
 import { IMAGERY, poemsOfImagery } from "../../lib/imagery";
 
-export const runtime = "edge";
-
 export const dynamicParams = false;
 
 export function generateStaticParams() {
