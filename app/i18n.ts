@@ -47,6 +47,8 @@ const zh: Dict = {
     "偶翻番语所译古人诗，不知原出谁家。君试猜乎？猜罢，拾几枚怜字，藏一纸格物小笺，携归，灯下慢慢读。",
   homeCtaPrimary: "去猜一首",
   homeCtaSecondary: "翻翻今日一诗",
+  homeByokHint:
+    "AI 讲解、随问随答等 AI 功能，可在「我」中填入你自己的 API Key 后开启。",
   homePlacesTitle: "几处去处",
   homeWhyTitle: "为什么从诗词读起",
   homeWhy1Title: "短，却不薄",
@@ -408,6 +410,8 @@ const en: Dict = {
     "Haply I turned the leaves of old poems rendered in a foreign tongue, and knew not whence they came. Wilt thou guess? When thou hast done, gather a few tender words, hide away a leaf of curious lore, and bear it home — to read it softly by the lamp.",
   homeCtaPrimary: "Go guess one",
   homeCtaSecondary: "See today's poem",
+  homeByokHint:
+    "AI features — line notes, ask-anything — run on your own API key. Add one under ‘My progress’.",
   homePlacesTitle: "Ways in",
   homeWhyTitle: "Why begin with poetry",
   homeWhy1Title: "Short, yet full",

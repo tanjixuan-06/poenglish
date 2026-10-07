@@ -51,6 +51,14 @@ export default function HomeHero() {
             {t("homeCtaSecondary")}
           </Link>
         </div>
+
+        {/* 安静的提示：AI 功能依赖自带密钥，不喧宾夺主 */}
+        <p className="mt-7 text-center">
+          <span className="hint">{t("homeByokHint")}</span>{" "}
+          <Link href="/me" className="btn-quiet">
+            {t("navMe")}
+          </Link>
+        </p>
       </section>
 
       {/* 几处去处：像书桌上的几页纸，安静地列着 */}
