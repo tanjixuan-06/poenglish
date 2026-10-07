@@ -2,9 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // 产出精简的 standalone 产物，供云托管（CloudBase Run / Docker）部署；
-  // 本地 next dev 不受影响。
-  output: "standalone",
+  // 注：部署到 Cloudflare Pages 由 OpenNext 接管构建，不需要 Next 的 standalone 输出；
+  // 若日后改回 CloudBase/Docker 路线，再重新开启 output: "standalone"。
   async headers() {
     // 内容安全策略：本站渲染用户文本与 AI 输出，加 CSP 进一步防 XSS 与数据外泄。
     // 因 layout 含内联 Service Worker 自愈脚本，script-src 需放行 'unsafe-inline'。

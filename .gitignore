@@ -1,5 +1,9 @@
 node_modules
 .next
+.vercel
+.worker-next
+.open-next
+.wrangler
 .env
 .env.local
 *.log

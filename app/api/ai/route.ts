@@ -174,6 +174,15 @@ export async function POST(req: NextRequest) {
         catalog;
     }
 
+    // 用 AbortController 手动实现超时，兼容 Cloudflare Workers / Node 等运行时
+    // （AbortSignal.timeout 在部分边缘运行时不一定可用）。
+    const ctrl = new AbortController();
+    const timer = setTimeout(
+      () => ctrl.abort(),
+      isSeek || isMnemonic
+        ? UPSTREAM_TIMEOUT_NONSTREAM_MS
+        : UPSTREAM_TIMEOUT_MS
+    );
     const upstream = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -190,13 +199,9 @@ export async function POST(req: NextRequest) {
         max_tokens: isSeek || isMnemonic ? 400 : MAX_TOKENS,
         stream: !(isSeek || isMnemonic),
       }),
-      // 非流式工具（寻诗/诗化记忆句）等待时间更短，避免超过 Serverless 函数时长上限。
-      signal: AbortSignal.timeout(
-        isSeek || isMnemonic
-          ? UPSTREAM_TIMEOUT_NONSTREAM_MS
-          : UPSTREAM_TIMEOUT_MS
-      ),
+      signal: ctrl.signal,
     });
+    clearTimeout(timer);
 
     if (!upstream.ok) {
       return NextResponse.json(
