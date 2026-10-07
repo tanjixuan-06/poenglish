@@ -21,7 +21,7 @@ export function generateMetadata({
   if (!poem) return { title: "诗词库" };
   const desc = `${poem.title} · ${poem.dynasty}·${poem.author}（${poem.stage}${poem.kind}）。中英对照、重点词汇${poem.cross ? `、${poem.cross.field}知识卡` : ""}。${poem.lines[0].en}`;
   return {
-    title: `${poem.title}（${poem.author}）英译`,
+    title: `${poem.title}英文翻译（${poem.author}）`,
     description: desc,
     keywords: [
       poem.title,

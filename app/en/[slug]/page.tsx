@@ -20,7 +20,7 @@ export function generateMetadata({
   if (!poem) return { title: "Chinese poetry in English" };
   const desc = `${poem.titleEn} — ${poem.dynastyEn} dynasty, by ${poem.authorEn}. Full English rendering of the Chinese poem ${poem.title}, with line-by-line Chinese, key words and a reading note.`;
   return {
-    title: `${poem.titleEn} — English translation of ${poem.title}`,
+    title: `${poem.titleEn}: a ${poem.dynastyEn}-era Chinese poem in English`,
     description: desc,
     keywords: [
       poem.titleEn,

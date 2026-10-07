@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/review`, lastModified: now, priority: 0.8 },
     { url: `${base}/me`, lastModified: now, priority: 0.6 },
     { url: `${base}/vocab`, lastModified: now, priority: 0.5 },
+    { url: `${base}/seek`, lastModified: now, priority: 0.8 },
+    { url: `${base}/privacy`, lastModified: now, priority: 0.3 },
     { url: `${base}/en`, lastModified: now, priority: 0.8 },
     ...IMAGERY.map((ig) => ({
       url: `${base}/imagery/${ig.key}`,
@@ -28,11 +30,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}/poems/${p.slug}`,
       lastModified: now,
       priority: 0.7,
+      alternates: {
+        languages: {
+          "zh-CN": `${base}/poems/${p.slug}`,
+          en: `${base}/en/${p.slug}`,
+        },
+      },
     })),
     ...POEMS.map((p) => ({
       url: `${base}/en/${p.slug}`,
       lastModified: now,
       priority: 0.6,
+      alternates: {
+        languages: {
+          "zh-CN": `${base}/poems/${p.slug}`,
+          en: `${base}/en/${p.slug}`,
+        },
+      },
     })),
   ];
 }
