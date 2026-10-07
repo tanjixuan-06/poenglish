@@ -44,7 +44,7 @@ const zh: Dict = {
 
   homeHeroTitle: "把古诗，读与远人听",
   homeHeroDesc:
-    "偶翻番语所译古人诗，不知原出谁家。君试猜乎？猜罢，拾几枚怜字，藏一纸格物小笺，携归，灯下慢慢读。",
+    "我们把古诗翻成英文，一句一句读给你听。你只管猜它出自哪一首；猜错没关系，顺手把喜欢的词收进小笺，带回家慢慢读。",
   homeCtaPrimary: "去猜一首",
   homeCtaSecondary: "翻翻今日一诗",
   homeByokHint:
@@ -407,7 +407,7 @@ const en: Dict = {
 
   homeHeroTitle: "An old poem, read softly to someone far away",
   homeHeroDesc:
-    "Haply I turned the leaves of old poems rendered in a foreign tongue, and knew not whence they came. Wilt thou guess? When thou hast done, gather a few tender words, hide away a leaf of curious lore, and bear it home — to read it softly by the lamp.",
+    "We turn old poems into English and read them to you, line by line. Just guess which one a line came from — getting it wrong is fine. Pocket the words you like, and take them home to read slowly.",
   homeCtaPrimary: "Go guess one",
   homeCtaSecondary: "See today's poem",
   homeByokHint:
