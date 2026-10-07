@@ -4,6 +4,8 @@ import PoemDetail from "../../components/PoemDetail";
 import { POEMS, POEM_MAP } from "../../config/poems";
 import { poemJsonLd } from "../../lib/jsonld";
 
+export const runtime = "edge";
+
 export const dynamicParams = false;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
