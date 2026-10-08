@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
   },
+  verification: {
+    other: {
+      "msvalidate.01": "48EA7F9058AA0C332B3626C599D4E63A",
+    },
+  },
 };
 
 /**
